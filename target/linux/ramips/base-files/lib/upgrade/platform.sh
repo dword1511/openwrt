@@ -55,6 +55,7 @@ platform_check_image() {
 	duzun-dm06|\
 	e1700|\
 	elecom,wrc-1167ghbk2-s|\
+	elecom,wrc-2533gst|\
 	esr-9753|\
 	ew1200|\
 	ex2700|\
@@ -76,12 +77,14 @@ platform_check_image() {
 	hpm|\
 	ht-tm02|\
 	hw550-3g|\
+	iodata,wn-ax1167gr|\
 	iodata,wn-gx300gr|\
 	ip2202|\
 	jhr-n805r|\
 	jhr-n825r|\
 	jhr-n926r|\
 	k2p|\
+	kimax,u35wf|\
 	kn|\
 	kn_rc|\
 	kn_rf|\
