@@ -12,16 +12,18 @@
 
 	aliases {
 		serial0 = &uart;
-		led-status = &status;
+		led-boot = &status;
+		led-failsafe = &status;
+		led-running = &status;
+		led-upgrade = &status;
 	};
 
 	keys {
 		compatible = "gpio-keys-polled";
 		poll-interval = <20>;
-		#address-cells = <1>;
-		#size-cells = <0>;
+
 		pinctrl-names = "default";
-                pinctrl-0 = <&jtag_disable_pins>;
+		pinctrl-0 = <&jtag_disable_pins>;
 
 		reset {
 			label = "Reset button";
@@ -104,8 +106,6 @@
 	status = "okay";
 
 	flash@0 {
-		#address-cells = <1>;
-		#size-cells = <1>;
 		compatible = "jedec,spi-nor";
 		reg = <0>;
 		spi-max-frequency = <25000000>;
