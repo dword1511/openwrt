@@ -59,7 +59,7 @@ endif
 DEFAULT_PACKAGES += $(DEFAULT_PACKAGES.$(DEVICE_TYPE))
 
 filter_packages = $(filter-out -% $(patsubst -%,%,$(filter -%,$(1))),$(1))
-extra_packages = $(if $(filter wpad-mini wpad nas,$(1)),iwinfo)
+extra_packages = $(if $(filter wpad-mini wpad-basic wpad nas,$(1)),iwinfo)
 
 define ProfileDefault
   NAME:=
@@ -174,7 +174,6 @@ ifeq ($(DUMP),1)
     CPU_CFLAGS_mips64 = -mips64 -mtune=mips64 -mabi=64
     CPU_CFLAGS_24kc = -mips32r2 -mtune=24kc
     CPU_CFLAGS_74kc = -mips32r2 -mtune=74kc
-    CPU_CFLAGS_octeon = -march=octeon -mabi=64
     CPU_CFLAGS_octeonplus = -march=octeon+ -mabi=64
   endif
   ifeq ($(ARCH),i386)

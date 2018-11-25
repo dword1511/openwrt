@@ -6,8 +6,8 @@
 . /lib/ar71xx.sh
 
 PART_NAME=firmware
-RAMFS_COPY_DATA=/lib/ar71xx.sh
-RAMFS_COPY_BIN='nandwrite'
+RAMFS_COPY_DATA='/lib/ar71xx.sh /etc/fw_env.config /var/lock/fw_printenv.lock'
+RAMFS_COPY_BIN='nandwrite fw_printenv fw_setenv'
 
 CI_BLKSZ=65536
 CI_LDADR=0x80060000
@@ -415,6 +415,7 @@ platform_check_image() {
 	lan-turtle|\
 	mc-mac1200r|\
 	minibox-v1|\
+	minibox-v3.2|\
 	omy-g1|\
 	omy-x1|\
 	onion-omega|\

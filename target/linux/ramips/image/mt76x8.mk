@@ -115,10 +115,10 @@ define Device/netgear_r6120
   IMAGE_SIZE := $(ralink_default_fw_size_16M)
   DEVICE_TITLE := Netgear AC1200 R6120
   DEVICE_PACKAGES := kmod-usb2 kmod-usb-ohci
-  SERCOMM_KERNEL_OFFSET := 90000
+  SERCOMM_KERNEL_OFFSET := 0x90000
   SERCOMM_HWID := CGQ
   SERCOMM_HWVER := A001
-  SERCOMM_SWVER := 0040
+  SERCOMM_SWVER := 0x0040
   IMAGES += factory.img
   IMAGE/default := append-kernel | pad-to $$$$(BLOCKSIZE)| append-rootfs | pad-rootfs
   IMAGE/sysupgrade.bin := $$(IMAGE/default) | append-metadata | check-size $$$$(IMAGE_SIZE)
@@ -230,6 +230,20 @@ define Device/tplink_c50-v3
   TPLINK_HVERSION := 3
 endef
 TARGET_DEVICES += tplink_c50-v3
+
+define Device/tplink_tl-mr3020-v3
+  $(Device/tplink)
+  DTS := TL-MR3020V3
+  IMAGE_SIZE := 7808k
+  DEVICE_TITLE := TP-Link TL-MR3020 v3
+  TPLINK_FLASHLAYOUT := 8Mmtk
+  TPLINK_HWID := 0x30200003
+  TPLINK_HWREV := 0x3
+  TPLINK_HWREVADD := 0x3
+  TPLINK_HVERSION := 3
+  DEVICE_PACKAGES := kmod-usb2 kmod-usb-ohci kmod-usb-ledtrig-usbport
+endef
+TARGET_DEVICES += tplink_tl-mr3020-v3
 
 define Device/tplink_tl-mr3420-v5
   $(Device/tplink)
