@@ -145,7 +145,8 @@ archer-c60-v2)
 	esac
 	;;
 archer-c7-v4|\
-archer-c7-v5)
+archer-c7-v5|\
+archer-a7-v5)
 	ucidef_set_led_wlan "wlan" "WLAN" "$board:green:wlan2g" "phy1tpt"
 	ucidef_set_led_wlan "wlan5g" "WLAN5G" "$board:green:wlan5g" "phy0tpt"
 	ucidef_set_led_switch "wan" "WAN" "$board:green:wan" "switch0" "0x02"
@@ -162,7 +163,8 @@ archer-c7-v5)
 	esac
 
 	case "$board" in
-	archer-c7-v5)
+	archer-c7-v5|\
+	archer-a7-v5)
 		ucidef_set_led_usbdev "usb" "USB" "$board:green:usb" "1-1"
 		;;
 	esac
