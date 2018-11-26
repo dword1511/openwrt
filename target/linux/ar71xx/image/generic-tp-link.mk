@@ -162,6 +162,7 @@ TARGET_DEVICES += archer-c7-v5
 define Device/archer-a7-v5
   $(Device/archer-c7-v4)
   DEVICE_TITLE := TP-LINK Archer A7 v5
+  DEVICE_PACKAGES := kmod-ath10k-ct ath10k-firmware-qca988x-ct kmod-usb-core kmod-usb2 kmod-usb-ledtrig-usbport
   BOARDNAME := ARCHER-A7-V5
   TPLINK_BOARD_ID := ARCHER-A7-V5
   IMAGE_SIZE := 15360k
