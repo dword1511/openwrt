@@ -705,6 +705,48 @@ static struct device_info boards[] = {
 		.last_sysupgrade_partition = "file-system",
 	},
 
+	/** Firmware layout for the A7 v5*/
+	{
+		.id = "ARCHER-A7-V5",
+		.support_list =
+			"SupportList:\n"
+			"{product_name:Archer A7,product_ver:5.0.0,special_id:45550000}\n"
+			"{product_name:Archer A7,product_ver:5.0.0,special_id:55530000}\n"
+			"{product_name:Archer A7,product_ver:5.0.0,special_id:43410000}\n"
+			"{product_name:Archer A7,product_ver:5.0.0,special_id:4A500000}\n"
+			"{product_name:Archer A7,product_ver:5.0.0,special_id:54570000}\n",
+
+		.support_trail = '\x00',
+		.soft_ver = "soft_ver:1.0.0\n",
+
+		/* We're using a dynamic kernel/rootfs split here */
+		.partitions = {
+			{"factory-boot",    0x00000,  0x20000},
+			{"fs-uboot",        0x20000,  0x20000},
+			{"firmware",        0x40000,  0xf00000},	/* Stock: name os-image base 0x40000  size 0x120000 */
+									/* Stock: name file-system base 0x160000 size 0xde0000 */
+			{"default-mac",     0xf40000, 0x00200},
+			{"pin",             0xf40200, 0x00200},
+			{"device-id",       0xf40400, 0x00100},
+			{"product-info",    0xf40500, 0x0fb00},
+			{"soft-version",    0xf50000, 0x01000},
+			{"extra-para",      0xf51000, 0x01000},
+			{"support-list",    0xf52000, 0x0a000},
+			{"profile",         0xf5c000, 0x04000},
+			{"default-config",  0xf60000, 0x10000},
+			{"user-config",     0xf70000, 0x40000},
+			{"certificate",     0xfb0000, 0x10000},
+			{"partition-table", 0xfc0000, 0x10000},
+			{"log",             0xfd0000, 0x20000},
+			{"radio",           0xff0000, 0x10000},
+			{NULL, 0, 0}
+
+		},
+
+		.first_sysupgrade_partition = "os-image",
+		.last_sysupgrade_partition = "file-system",
+	},
+
 	/** Firmware layout for the C9 */
 	{
 		.id = "ARCHERC9",
@@ -1575,9 +1617,11 @@ static void build_image(const char *output,
 	parts[4] = read_file("file-system", rootfs_image, add_jffs2_eof, file_system_partition);
 
 	/* Some devices need the extra-para partition to accept the firmware */
+	/* NOTE: from Archer A7 V5's log, first byte seems to denote "Double boot" images */
 	if (strcasecmp(info->id, "ARCHER-C25-V1") == 0 ||
 	    strcasecmp(info->id, "ARCHER-C59-V2") == 0 ||
 	    strcasecmp(info->id, "ARCHER-C60-V2") == 0 ||
+	    strcasecmp(info->id, "ARCHER-A7-V5") == 0 ||
 	    strcasecmp(info->id, "TLWR1043NV5") == 0) {
 		const char mdat[11] = {0x00, 0x00, 0x00, 0x02, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00};
 		parts[5] = put_data("extra-para", mdat, 11);

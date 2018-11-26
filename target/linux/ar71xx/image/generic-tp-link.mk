@@ -159,6 +159,17 @@ define Device/archer-c7-v5
 endef
 TARGET_DEVICES += archer-c7-v5
 
+define Device/archer-a7-v5
+  $(Device/archer-c7-v4)
+  DEVICE_TITLE := TP-LINK Archer A7 v5
+  BOARDNAME := ARCHER-C7-V5
+  TPLINK_BOARD_ID := ARCHER-A7-V5
+  IMAGE_SIZE := 16064k
+  MTDPARTS := spi0.0:128k(factory-uboot)ro,128k(u-boot)ro,16064k@0x40000(firmware),64k@0xff0000(art)ro
+  SUPPORTED_DEVICES := archer-a7-v5
+endef
+TARGET_DEVICES += archer-a7-v5
+
 define Device/cpe510-520-v1
   DEVICE_TITLE := TP-LINK CPE510/520 v1
   BOARDNAME := CPE510
