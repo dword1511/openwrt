@@ -37,7 +37,7 @@ define Device/tplink_archer-c7-v2
   DEVICE_TITLE := TP-LINK Archer C7 v2
   DEVICE_PACKAGES := kmod-usb-core kmod-usb2 kmod-usb-ledtrig-usbport kmod-ath10k-ct ath10k-firmware-qca988x-ct
   TPLINK_HWID := 0xc7000002
-  IMAGES := sysupgrade.bin factory.bin factory-us.bin factory-eu.bin
+  IMAGES += factory-us.bin factory-eu.bin
   IMAGE/factory-us.bin := append-rootfs | mktplinkfw factory -C US
   IMAGE/factory-eu.bin := append-rootfs | mktplinkfw factory -C EU
 endef
@@ -98,6 +98,15 @@ define Device/tplink_tl-wr1043nd-v1
   SUPPORTED_DEVICES += tl-wr1043nd
 endef
 TARGET_DEVICES += tplink_tl-wr1043nd-v1
+
+define Device/tplink_tl-wr842n-v1
+  $(Device/tplink-8m)
+  ATH_SOC := ar7241
+  DEVICE_TITLE := TP-LINK TL-WR842N/ND v1
+  DEVICE_PACKAGES := kmod-usb-core kmod-usb2 kmod-usb-ledtrig-usbport
+  TPLINK_HWID := 0x8420001
+endef
+TARGET_DEVICES += tplink_tl-wr842n-v1
 
 define Device/tplink_tl-wr842n-v2
   $(Device/tplink-8mlzma)
