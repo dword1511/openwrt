@@ -2734,7 +2734,7 @@ config BUSYBOX_DEFAULT_FEATURE_PS_ADDITIONAL_COLUMNS
 	default n
 config BUSYBOX_DEFAULT_PSTREE
 	bool
-	default n
+	default y
 config BUSYBOX_DEFAULT_PWDX
 	bool
 	default n
